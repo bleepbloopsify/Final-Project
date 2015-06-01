@@ -16,8 +16,6 @@ class Room{
   
   Entity[][] room;//A 2d map of the room
   
-  
-  
   Room(int rX, int rY){
     this.rX = rX;
     this.rY = rY;
