@@ -2,8 +2,8 @@
 class Room{
   
   //CONSTANT
-  int ROOM_SIZE = 20;//In terms of availible space one one edge for a single object, i.e. 1 = space for one object
-  int BOX_SIZE = 5;//Pixel size of one edge of an object
+  int ROOM_SIZE = 21;//In terms of availible space one one edge for a single object, i.e. 1 = space for one object
+  int BOX_SIZE = 20;//Pixel size of one edge of an object
   
   int ROOM_RED_HUE = 30;
   int ROOM_GRE_HUE = 100;
