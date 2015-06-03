@@ -1,0 +1,15 @@
+null wall null null null null null null null null null null null null null 
+null wall null null null null null null null null null null null null null 
+null wall null null null null wall wall null null null null null null null 
+null wall null null null null null wall wall null null null null null null 
+null wall null null null null null null wall null null null null null null 
+null wall wall null null null null null null wall null null null null null 
+null null wall null null null null null null wall null null null null null 
+null null wall wall null null null null null wall null null null null null 
+null null null wall wall null null null null wall null null null null null 
+null null null null wall wall wall wall wall wall null null null null null 
+null null null null null null null null null null null null null null null 
+null null null null null null null null null null null null null null null 
+null null null null null null null null null null null null null null null 
+null null null null null null null null null null null null null null null 
+null null null null null null null null null null null null null null null 
