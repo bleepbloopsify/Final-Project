@@ -5,6 +5,7 @@ class Map{
   int MAX_RWIDTH = 10;
   
   int SPRAWL = 5;//How many rooms the floor has
+  String PROJ_LOC;
   
   //Instance
   int rLength, rWidth;//Dimensions in terms of number of rooms
@@ -13,7 +14,8 @@ class Map{
   Room spawn;
   Room boss;
   
-  Map(int floor){
+  Map(int floor, String projloc){
+    this.PROJ_LOC = projloc;
     map = new Room[MAX_RHEIGHT][MAX_RWIDTH];
     this.floor = floor;
     setStart();
@@ -32,7 +34,7 @@ class Map{
 
   // Will set the spawn room for the floor
   void setStart(){
-    spawn = new Room(int(random(MAX_RWIDTH)), int(random(MAX_RHEIGHT)));
+    spawn = new Room (int(random(MAX_RWIDTH)), int(random(MAX_RHEIGHT)), PROJ_LOC);
     map[spawn.rY][spawn.rX] = spawn;
   }
   
@@ -47,14 +49,14 @@ class Map{
     if( outOfBounds(x,y) )
      return false; 
     if( trail > floor * SPRAWL){
-       boss = new Room(x , y);
+       boss = new Room(x , y, PROJ_LOC);
        map[y][x] = boss;
        return true;
     }
     int bX = int(pow(-1, int(random(2))));
     int bY = int(pow(-1, int(random(2))));
     if(setRooms(x + bX, y, trail++) || setRooms(x - bX, y, trail) || setRooms(x, y + bY, trail) || setRooms(x, y - bY, trail)){
-      map[y][x] = new Room(x , y);
+      map[y][x] = new Room(x , y, PROJ_LOC);
       return true;
     }
     return false;

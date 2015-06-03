@@ -142,7 +142,7 @@ int[] getColorSeq(String thing){
 }
 
 int index(String[] stuff, String thing){
-  for(int i = 0; i < stuff.length - 1; i++){
+  for(int i = 0; i < stuff.length; i++){
     if(stuff[i].equals(thing)){
       return i;
     }
@@ -193,6 +193,12 @@ boolean onBoard(int x, int y){
 }
 
 void export(){
+  for(int i = 0; i < ROOM_SIZE * ROOM_SIZE; i++){
+    if(map[i / ROOM_SIZE][i % ROOM_SIZE] == null)
+     map[i / ROOM_SIZE][i % ROOM_SIZE] = "floor"; 
+  }
+  
+  
   String newfile = PROJ_LOC + FILE;
   try{
     File folder = new File(newfile);
@@ -215,4 +221,8 @@ void export(){
     }
     writer.close();
   }catch(IOException e){println(e);}
+  map = new String[ROOM_SIZE][ROOM_SIZE];
+  
+  
+  
 }

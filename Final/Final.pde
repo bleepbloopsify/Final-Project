@@ -1,5 +1,7 @@
 //CONSTANTS
 int BG_COLOR_GREYSCALE = 255;
+String PROJ_LOC = "C:/Users/Leon/Desktop/Final-Project";
+
 
 //Instance
 Map currFloor;
@@ -9,7 +11,7 @@ void setup(){
   background(BG_COLOR_GREYSCALE);
   
   floor = 1;
-  currFloor = new Map(floor);
+  currFloor = new Map(floor, PROJ_LOC);
   println(currFloor.map);
 }
 
