@@ -2,9 +2,9 @@ import java.io.*;
 class Room{
   
   //CONSTANT
-  int ROOM_SIZE = 15;//In terms of availible space one one edge for a single object, i.e. 1 = space for one object
-  int BOX_SIZE = 70;//Pixel size of one edge of an object
-  
+  final static int ROOM_SIZE = 15;//In terms of availible space one one edge for a single object, i.e. 1 = space for one object
+  final static int BOX_SIZE = 70;//Pixel size of one edge of an object
+  final static int PADDING = 100;
   int ROOM_RED_HUE = 30;
   int ROOM_GRE_HUE = 100;
   int ROOM_BLU_HUE = 50;
@@ -13,6 +13,8 @@ class Room{
   
   //Instance
   int rX, rY;//Location of room on the Map
+  boolean cleared = false;
+  ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
   
   Entity[][] room;//A 2d map of the room
   
@@ -35,9 +37,9 @@ class Room{
           if(fileline[i] == "null"){  
             line[i] = null;
           }else if(fileline[i].charAt(0) > 'z'){
-           //line[i] = new Entity(fileline[i]); 
+           line[i] = new Enemy(fileline[i]); 
           }else{
-            //line[i] = new Object(fileline[i]);
+            line[i] = new Object(fileline[i]);
           }
         }
       }
@@ -45,7 +47,16 @@ class Room{
   }
  
   void display(){
-     
+   for(int row = 0; row < ROOM_SIZE; row++){
+     for(int col = 0; col < ROOM_SIZE; col++){
+       if(room[row][col] != null && room[row][col].type.equals("Object")){
+         room[row][col].display();
+       }
+     }
+    }
+    for(Enemy e : enemyList){
+     e.display(); 
+    }
   }
   
   //Distance between two rooms, calculated as a sum of horizontal and vertical distance
