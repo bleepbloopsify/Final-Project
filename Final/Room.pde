@@ -3,8 +3,8 @@ class Room{
   
   //CONSTANT
   final static int ROOM_SIZE = 15;//In terms of availible space one one edge for a single object, i.e. 1 = space for one object
-  final static int BOX_SIZE = 70;//Pixel size of one edge of an object
-  final static int PADDING = 100;
+  final static int BOX_SIZE = 40;//Pixel size of one edge of an object
+  final static int PADDING = 50;
   int ROOM_RED_HUE = 30;
   int ROOM_GRE_HUE = 100;
   int ROOM_BLU_HUE = 50;
@@ -24,6 +24,14 @@ class Room{
     
     room = new Entity[ROOM_SIZE][ROOM_SIZE]; 
     load(fileloc);
+    
+    for(Entity[] line : room){
+      for(Entity e : line){
+        print(e.name + " ");
+      }
+      println();
+    }
+    println();
   }
   
   void load(String fileloc){
@@ -36,7 +44,7 @@ class Room{
         for(int i = 0; i < line.length; i++){
           if(fileline[i] == "null"){  
             line[i] = null;
-          }else if(fileline[i].charAt(0) > 'z'){
+          }else if('A' - 1 < fileline[i].charAt(0) && fileline[i].charAt(0) < 'Z' + 1){
            line[i] = new Enemy(fileline[i]); 
           }else{
             line[i] = new Object(fileline[i]);
@@ -44,13 +52,23 @@ class Room{
         }
       }
     }catch(Exception e){println(e);}
+    for(int row = 0; row < ROOM_SIZE; row++){
+      for(int col = 0; col < ROOM_SIZE; col++){
+        if(room[row][col] != null && room[row][col].type == "Object"){
+          room[row][col].setLoc(PADDING + row * BOX_SIZE, PADDING + col * BOX_SIZE); 
+        }
+      }
+    }
   }
  
   void display(){
    for(int row = 0; row < ROOM_SIZE; row++){
      for(int col = 0; col < ROOM_SIZE; col++){
-       if(room[row][col] != null && room[row][col].type.equals("Object")){
-         room[row][col].display();
+       
+       if(room[row][col] != null){
+         if( room[row][col].type.equals("Object")){
+          room[row][col].display();
+         }
        }
      }
     }

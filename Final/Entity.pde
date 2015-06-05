@@ -4,8 +4,9 @@ class Entity{
   boolean dies;
   int lifespan;//How long the object appears for
   
-  int rX, rY;//The coordinates in the room
+  int x, y;//The coordinates in the room
   
+  String name;
   String type;//Enemy? Object? Neither?
   boolean solid;//Can I walk through you?
   
@@ -15,5 +16,10 @@ class Entity{
   int BLUE = 2;
   
   void display(){
+  }
+  
+  void setLoc(int x, int y){
+    this.x = x;
+    this.y = y;
   }
 }

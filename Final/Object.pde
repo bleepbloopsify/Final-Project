@@ -10,11 +10,11 @@ class Object extends Entity{
   }
   
   void load(String name){
-    
+    this.name = name;
   }
   
   void display(){
      fill(colorScheme[RED], colorScheme[GREEN], colorScheme[BLUE]);
-     rect(Room.PADDING + rX * Room.BOX_SIZE, Room.PADDING + rY * Room.BOX_SIZE, Room.BOX_SIZE, Room.BOX_SIZE);
+     rect(x, y, Room.BOX_SIZE, Room.BOX_SIZE);
   }
 }
