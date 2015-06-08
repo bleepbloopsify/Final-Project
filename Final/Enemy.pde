@@ -11,8 +11,6 @@ class Enemy extends Entity{
   int cx, cy;//center in px
   int radius;//radius of the guy in px
   
-  float i, j;//vector in the form ai + bj, where i = <1,0> and j = <0,1>
-  
   int seq;//Sequence of movement; for animation
   
   Enemy(String name){

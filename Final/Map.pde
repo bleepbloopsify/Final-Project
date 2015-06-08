@@ -22,6 +22,11 @@ class Map{
     setRooms();
   }
 
+  void display(){
+    currRoom.display();
+  }
+
+
   //Is a room outside of the map?
   boolean outOfBounds(Room r){
     return  0 > r.rX || r.rX >= MAX_RWIDTH || 0 > r.rY || r.rY >= MAX_RHEIGHT;
@@ -34,7 +39,7 @@ class Map{
 
   // Will set the spawn room for the floor
   void setStart(){
-    spawn = new Room (int(random(MAX_RWIDTH)), int(random(MAX_RHEIGHT)));
+    spawn = new Spawn(int(random(MAX_RWIDTH)), int(random(MAX_RHEIGHT)));
     map[spawn.rY][spawn.rX] = spawn;
     currRoom = spawn;
   }

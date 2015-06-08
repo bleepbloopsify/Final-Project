@@ -1,6 +1,6 @@
 import java.io.*;
 class Room{
-  
+    
   //CONSTANT
   final static int ROOM_SIZE = 15;//In terms of availible space one one edge for a single object, i.e. 1 = space for one object
   final static int BOX_SIZE = 40;//Pixel size of one edge of an object
@@ -10,6 +10,7 @@ class Room{
   int ROOM_BLU_HUE = 50;
   
   String ROOM_LOCATION = "/Rooms/";//File location of a room
+  String PROJ_LOC = Final.PROJ_LOC;
   
   //Instance
   int rX, rY;//Location of room on the Map
@@ -17,6 +18,9 @@ class Room{
   ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
   
   Entity[][] room;//A 2d map of the room
+  
+  Room(){
+  }
   
   Room(int rX, int rY){
     this.rX = rX;
@@ -68,6 +72,10 @@ class Room{
     }
   }
   
+  boolean canMove(int x, int y){
+    
+    return true;
+  }
   //Distance between two rooms, calculated as a sum of horizontal and vertical distance
   int roomDistance(Room other){
     return abs(this.rX - other.rX) + abs(this.rY - other.rY);

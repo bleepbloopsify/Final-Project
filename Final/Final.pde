@@ -1,13 +1,13 @@
 //CONSTANTS
 int BG_COLOR_GREYSCALE = 255;
-static String PROJ_LOC = "C:/Users/Leon/Desktop/Final-Project";
-//static String PROJ_LOC = "/home/students/2016/leon.chou/Final-Project";
+//static String PROJ_LOC = "C:/Users/Leon/Desktop/Final-Project";
+static String PROJ_LOC = "/home/students/2016/leon.chou/Final-Project";
 
 static String IMG_LOC = "";//"/Images/";
 static String IMG_END = ".png";
 
 //Instance
-Map currFloor;
+static Map currFloor;
 int floor;
 
 boolean[] keyDown = new boolean[256];
@@ -23,11 +23,14 @@ void setup(){
   
   floor = 1;
   currFloor = new Map(floor);
+  
+  player = new Player();
 }
 
 void draw(){
   background(255);
-  currFloor.currRoom.display();
+  currFloor.display();
+  player.display(keyDown);
 }
 
 void keyPressed(){
