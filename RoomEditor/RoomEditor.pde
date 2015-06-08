@@ -4,8 +4,8 @@ String FILE = "/Rooms/";
 String ROOM = "Room_";
 String BOSS = "Boss_";
 String FILE_END = ".txt";
-String PROJ_LOC = "/home/students/2016/leon.chou/Final-Project";
-//String PROJ_LOC = "C:/Users/Leon/Desktop/Final-Project";
+//String PROJ_LOC = "/home/students/2016/leon.chou/Final-Project";
+String PROJ_LOC = "C:/Users/Leon/Desktop/Final-Project";
 
 String ENEMY_NAMES = "/Enemy_Names.txt";
 ArrayList<String> enemyList;

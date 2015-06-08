@@ -15,6 +15,8 @@ class Entity{
   int GREEN = 1;
   int BLUE = 2;
   
+  
+  
   void display(){
   }
   

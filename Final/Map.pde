@@ -20,13 +20,6 @@ class Map{
     this.floor = floor;
     setStart();
     setRooms();
-    for(Room[] line : map){
-      for(Room r : line){
-        print(r);
-      }
-      println();
-    }
-    println();
   }
 
   //Is a room outside of the map?
@@ -41,7 +34,7 @@ class Map{
 
   // Will set the spawn room for the floor
   void setStart(){
-    spawn = new Room (int(random(MAX_RWIDTH)), int(random(MAX_RHEIGHT)), Final.PROJ_LOC);
+    spawn = new Room (int(random(MAX_RWIDTH)), int(random(MAX_RHEIGHT)));
     map[spawn.rY][spawn.rX] = spawn;
     currRoom = spawn;
   }
@@ -57,7 +50,7 @@ class Map{
     if( outOfBounds(x,y) )
      return false; 
     if( trail > floor * SPRAWL){
-       boss = new Room(x , y, PROJ_LOC);
+       boss = new Room(x , y);
        map[y][x] = boss;
        return true;
     }
@@ -66,12 +59,12 @@ class Map{
     
     if(boolean(int(random(2)))){
       if(setRooms(x + bX, y, trail++) || setRooms(x - bX, y, trail) || setRooms(x, y + bY, trail) || setRooms(x, y - bY, trail)){
-        map[y][x] = new Room(x , y, PROJ_LOC);
+        map[y][x] = new Room(x , y);
         return true;
       }
       return false;
     }else if(setRooms(x, y + bY, trail) || setRooms(x, y - bY, trail) || setRooms(x + bX, y, trail++) || setRooms(x - bX, y, trail) ){
-        map[y][x] = new Room(x , y, PROJ_LOC);
+        map[y][x] = new Room(x , y);
         return true;
       }
       return false;

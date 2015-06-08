@@ -5,8 +5,6 @@ class Object extends Entity{
   Object(String name){
     type = "Object";
     load(name);
-    
-    
   }
   
   void load(String name){

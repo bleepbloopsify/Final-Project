@@ -1,0 +1,4 @@
+name=Spiderling
+hp=20
+mod=5
+radius=10

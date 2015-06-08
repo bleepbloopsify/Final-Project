@@ -1,0 +1,4 @@
+name=Blob
+hp=100
+mod=10
+radius=50

@@ -1,0 +1,4 @@
+name=Tank
+hp=150
+mod=30
+radius=50

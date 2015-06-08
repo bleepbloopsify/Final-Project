@@ -18,34 +18,28 @@ class Room{
   
   Entity[][] room;//A 2d map of the room
   
-  Room(int rX, int rY, String fileloc){
+  Room(int rX, int rY){
     this.rX = rX;
     this.rY = rY;
     
     room = new Entity[ROOM_SIZE][ROOM_SIZE]; 
-    load(fileloc);
-    
-    for(Entity[] line : room){
-      for(Entity e : line){
-        print(e.name + " ");
-      }
-      println();
-    }
-    println();
+    load();
   }
   
-  void load(String fileloc){
-    File folder = new File(fileloc + ROOM_LOCATION);
+  void load(){
+    File folder = new File(Final.PROJ_LOC + ROOM_LOCATION);
     File[] files = folder.listFiles();
     try{
       BufferedReader file = new BufferedReader(new FileReader(files[int(random(files.length))]));
       for(Entity[] line : room){
         String[] fileline = file.readLine().split(" ");
-        for(int i = 0; i < line.length; i++){
-          if(fileline[i] == "null"){  
+        for(int i = 0; i < fileline.length; i++){
+          if(fileline[i] == "null" || fileline[i].equals("floor")){  
             line[i] = null;
           }else if('A' - 1 < fileline[i].charAt(0) && fileline[i].charAt(0) < 'Z' + 1){
-           line[i] = new Enemy(fileline[i]); 
+            Enemy spawn = new Enemy(fileline[i]);
+            line[i] = spawn;
+            enemyList.add(spawn);
           }else{
             line[i] = new Object(fileline[i]);
           }
@@ -54,7 +48,7 @@ class Room{
     }catch(Exception e){println(e);}
     for(int row = 0; row < ROOM_SIZE; row++){
       for(int col = 0; col < ROOM_SIZE; col++){
-        if(room[row][col] != null && room[row][col].type == "Object"){
+        if(room[row][col] != null){
           room[row][col].setLoc(PADDING + row * BOX_SIZE, PADDING + col * BOX_SIZE); 
         }
       }
@@ -64,16 +58,13 @@ class Room{
   void display(){
    for(int row = 0; row < ROOM_SIZE; row++){
      for(int col = 0; col < ROOM_SIZE; col++){
-       
-       if(room[row][col] != null){
-         if( room[row][col].type.equals("Object")){
+       if(room[row][col] != null && room[row][col].type.equals("Object")){
           room[row][col].display();
-         }
-       }
+        }
      }
     }
     for(Enemy e : enemyList){
-     e.display(); 
+     e.display();
     }
   }
   
