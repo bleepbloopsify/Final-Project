@@ -4,6 +4,8 @@ class Map{
   int MAX_RHEIGHT = 10;
   int MAX_RWIDTH = 10;
   
+  int DOOR_LENGTH = 20;
+  
   int SPRAWL = 5;//How many rooms the floor has
   
   //Instance
@@ -24,8 +26,24 @@ class Map{
 
   void display(){
     currRoom.display();
+    drawDoors();
   }
 
+  void drawDoors(){
+    noStroke();
+    fill(0);
+    for(float i = 0; i < TWO_PI; i += HALF_PI){
+      if(map[currRoom.rY + int(cos(i))][currRoom.rX + int(sin(i))] != null){
+        beginShape();
+        vertex(Room.PADDING + (Room.ROOM_SIZE * Room.BOX_SIZE / 2 - Room.BOX_SIZE / 2) * (1 + cos(i)), Room.PADDING + (Room.ROOM_SIZE * Room.BOX_SIZE / 2 - Room.BOX_SIZE / 2) * (1 + sin(i)));
+        vertex(Room.PADDING + (Room.ROOM_SIZE * Room.BOX_SIZE / 2 + Room.BOX_SIZE / 2) * (1 + cos(i)), Room.PADDING + (Room.ROOM_SIZE * Room.BOX_SIZE / 2 - Room.BOX_SIZE / 2) * (1 + sin(i)));
+        vertex(Room.PADDING + (Room.ROOM_SIZE * Room.BOX_SIZE / 2 + Room.BOX_SIZE / 2) * (1 + cos(i)) - DOOR_LENGTH, Room.PADDING + (Room.ROOM_SIZE * Room.BOX_SIZE / 2 - Room.BOX_SIZE / 2) * (1 + sin(i)));
+        vertex(Room.PADDING + (Room.ROOM_SIZE * Room.BOX_SIZE / 2 - Room.BOX_SIZE / 2) * (1 + cos(i)) - DOOR_LENGTH, Room.PADDING + (Room.ROOM_SIZE * Room.BOX_SIZE / 2 - Room.BOX_SIZE / 2) * (1 + sin(i)));
+        endShape();
+      }
+      
+    }
+  }
 
   //Is a room outside of the map?
   boolean outOfBounds(Room r){

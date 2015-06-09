@@ -3,8 +3,8 @@ class Room{
     
   //CONSTANT
   final static int ROOM_SIZE = 15;//In terms of availible space one one edge for a single object, i.e. 1 = space for one object
-  final static int BOX_SIZE = 40;//Pixel size of one edge of an object
-  final static int PADDING = 50;
+  final static int BOX_SIZE = 50;//Pixel size of one edge of an object
+  final static int PADDING = 25;
   int ROOM_RED_HUE = 30;
   int ROOM_GRE_HUE = 100;
   int ROOM_BLU_HUE = 50;
@@ -72,8 +72,13 @@ class Room{
     }
   }
   
-  boolean canMove(int x, int y){
-    
+  boolean canMove(int x, int y, int radius){
+    if( PADDING > x - radius || x + radius >= PADDING + BOX_SIZE * ROOM_SIZE || PADDING > y - radius || y + radius >= PADDING + BOX_SIZE * ROOM_SIZE){
+      return false;
+    }
+    if(room[(y - PADDING) / BOX_SIZE][(x - PADDING) / BOX_SIZE] != null && room[(y - PADDING) / BOX_SIZE][(x - PADDING) / BOX_SIZE].solid){
+      return false;
+    }
     return true;
   }
   //Distance between two rooms, calculated as a sum of horizontal and vertical distance

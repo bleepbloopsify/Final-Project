@@ -14,6 +14,7 @@ boolean[] keyDown = new boolean[256];
 
 int x, y;//for mouse
 
+PImage bg;
 Player player;
 
 void setup(){
@@ -21,6 +22,7 @@ void setup(){
   background(BG_COLOR_GREYSCALE);
   Enemy p1 = new Enemy("Blob");
   
+  bg = loadImage("Room_Bg.png");
   floor = 1;
   currFloor = new Map(floor);
   
@@ -29,6 +31,7 @@ void setup(){
 
 void draw(){
   background(255);
+  image(bg, Room.PADDING, Room.PADDING, Room.BOX_SIZE * Room.ROOM_SIZE, Room.BOX_SIZE * Room.ROOM_SIZE);
   currFloor.display();
   player.display(keyDown);
 }

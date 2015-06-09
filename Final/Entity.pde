@@ -12,6 +12,7 @@ class Entity{
   String type;//Enemy? Object? Neither?
   boolean solid;//Can I walk through you?
   
+  PImage img;
   int[] colorScheme = {0,100,150};
   int RED = 0;
   int GREEN = 1;

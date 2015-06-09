@@ -31,7 +31,7 @@ class Enemy extends Entity{
         line = file.readLine();
       }
       file.close();
-      println(name);
+      
     }catch(IOException e){println(e);} 
   }
   
@@ -43,7 +43,7 @@ class Enemy extends Entity{
   void display(){
 
     if(name == null || name.equals("null")) {println("NAME IS NULL");return;}
-    PImage img = loadImage(Final.IMG_LOC + name + "_" + seq + Final.IMG_END);
+    img = loadImage(Final.IMG_LOC + name + "_" + seq + Final.IMG_END);
     image(img, cx - Room.BOX_SIZE / 2, cy - Room.BOX_SIZE / 2, Room.BOX_SIZE - 10, Room.BOX_SIZE - 10);
     seq = (seq + 1) % 3 + 1;
   }
