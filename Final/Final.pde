@@ -27,6 +27,11 @@ void setup(){
   currFloor = new Map(floor);
   
   player = new Player();
+  
+  println(int(1 + cos(0)) + " " + int(1 + sin(0)));
+  println(int(1 + cos(HALF_PI)) + " " + int(1 + sin(HALF_PI)));
+  println(int(1 + cos(PI)) + " " + int(1 + sin(PI)));
+  println(int(1 + cos(PI + HALF_PI)) + " " + int(1 + sin(PI + HALF_PI)));
 }
 
 void draw(){

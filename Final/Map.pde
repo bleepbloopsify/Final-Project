@@ -30,15 +30,20 @@ class Map{
   }
 
   void drawDoors(){
+    int p = Room.PADDING;
+    int r = Room.ROOM_SIZE;
+    int b = Room.BOX_SIZE;
+      
     noStroke();
     fill(0);
-    for(float i = 0; i < TWO_PI; i += HALF_PI){
-      if(map[currRoom.rY + int(cos(i))][currRoom.rX + int(sin(i))] != null){
+    for(float i = 0; i <= TWO_PI; i += HALF_PI){
+      if(true || 0 < currRoom.rY + int(cos(i)) && currRoom.rY + int(cos(i)) <  MAX_RHEIGHT && 0 < currRoom.rX + int(sin(i)) && currRoom.rX + int(sin(i)) < MAX_RWIDTH && map[currRoom.rY + int(cos(i))][currRoom.rX + int(sin(i))] != null){
         beginShape();
-        vertex(Room.PADDING + (Room.ROOM_SIZE * Room.BOX_SIZE / 2 - Room.BOX_SIZE / 2) * (1 + cos(i)), Room.PADDING + (Room.ROOM_SIZE * Room.BOX_SIZE / 2 - Room.BOX_SIZE / 2) * (1 + sin(i)));
-        vertex(Room.PADDING + (Room.ROOM_SIZE * Room.BOX_SIZE / 2 + Room.BOX_SIZE / 2) * (1 + cos(i)), Room.PADDING + (Room.ROOM_SIZE * Room.BOX_SIZE / 2 - Room.BOX_SIZE / 2) * (1 + sin(i)));
-        vertex(Room.PADDING + (Room.ROOM_SIZE * Room.BOX_SIZE / 2 + Room.BOX_SIZE / 2) * (1 + cos(i)) - DOOR_LENGTH, Room.PADDING + (Room.ROOM_SIZE * Room.BOX_SIZE / 2 - Room.BOX_SIZE / 2) * (1 + sin(i)));
-        vertex(Room.PADDING + (Room.ROOM_SIZE * Room.BOX_SIZE / 2 - Room.BOX_SIZE / 2) * (1 + cos(i)) - DOOR_LENGTH, Room.PADDING + (Room.ROOM_SIZE * Room.BOX_SIZE / 2 - Room.BOX_SIZE / 2) * (1 + sin(i)));
+        println(int(cos(i + PI)) + " " + int(sin(i)));
+        vertex(p + (r * b / 2 + b / 2) * (1 + cos(i + PI)), p + (r * b / 2 - b / 2) * (1 + sin(i)));
+        vertex(p + (r * b / 2 - b / 2) * (1 + cos(i + PI)), p + (r * b / 2 - b / 2) * (1 + sin(i)));
+        vertex(p + (r * b / 2 - b / 2) * (1 + cos(i + PI)) + DOOR_LENGTH * cos(i + PI), p + (r * b / 2 + b / 2) * (1 + sin(i)) + DOOR_LENGTH * sin(i));
+        vertex(p + (r * b / 2 + b / 2) * (1 + cos(i + PI)) + DOOR_LENGTH * cos(i + PI), p + (r * b / 2 + b / 2) * (1 + sin(i)) + DOOR_LENGTH * sin(i));
         endShape();
       }
       
