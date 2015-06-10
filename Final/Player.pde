@@ -14,7 +14,7 @@ class Player extends Entity{
   Player(){
     x = width / 2;
     y = height / 2;
-    speed = 5;
+    speed = 10;
   }
   
   void display(boolean[] keys){

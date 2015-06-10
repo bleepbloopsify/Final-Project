@@ -1,7 +1,7 @@
 //CONSTANTS
 int BG_COLOR_GREYSCALE = 255;
-//static String PROJ_LOC = "C:/Users/Leon/Desktop/Final-Project";
-static String PROJ_LOC = "/home/students/2016/leon.chou/Final-Project";
+static String PROJ_LOC = "C:/Users/Leon/Desktop/Final-Project";
+//static String PROJ_LOC = "/home/students/2016/leon.chou/Final-Project";
 
 static String IMG_LOC = "";//"/Images/";
 static String IMG_END = ".png";
@@ -28,15 +28,18 @@ void setup(){
   
   player = new Player();
   
-  println(int(1 + cos(0)) + " " + int(1 + sin(0)));
-  println(int(1 + cos(HALF_PI)) + " " + int(1 + sin(HALF_PI)));
-  println(int(1 + cos(PI)) + " " + int(1 + sin(PI)));
-  println(int(1 + cos(PI + HALF_PI)) + " " + int(1 + sin(PI + HALF_PI)));
+  println(int(cos(-1 * HALF_PI)) + " " + int(sin(-1 * HALF_PI)));
+  println(int(cos(0)) + " " + int(sin(0)));
+  println(int(cos(HALF_PI)) + " " + int( sin(HALF_PI)));
+  println(int(cos(PI)) + " " + int(sin(PI)));
+  
 }
 
 void draw(){
-  background(255);
-  image(bg, Room.PADDING, Room.PADDING, Room.BOX_SIZE * Room.ROOM_SIZE, Room.BOX_SIZE * Room.ROOM_SIZE);
+  background(100);
+  //image(bg, Room.PADDING, Room.PADDING, Room.BOX_SIZE * Room.ROOM_SIZE, Room.BOX_SIZE * Room.ROOM_SIZE);
+  fill(150);
+  rect(Room.PADDING, Room.PADDING, Room.BOX_SIZE * Room.ROOM_SIZE, Room.BOX_SIZE * Room.ROOM_SIZE);
   currFloor.display();
   player.display(keyDown);
 }

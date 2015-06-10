@@ -4,7 +4,7 @@ class Map{
   int MAX_RHEIGHT = 10;
   int MAX_RWIDTH = 10;
   
-  int DOOR_LENGTH = 20;
+  int DOOR_LENGTH = 4;
   
   int SPRAWL = 5;//How many rooms the floor has
   
@@ -30,20 +30,19 @@ class Map{
   }
 
   void drawDoors(){
-    int p = Room.PADDING;
-    int r = Room.ROOM_SIZE;
-    int b = Room.BOX_SIZE;
-      
+    int pad = Room.PADDING;
+    int dist = Room.ROOM_SIZE * Room.BOX_SIZE / 2;
+    int box = Room.BOX_SIZE;
     noStroke();
     fill(0);
-    for(float i = 0; i <= TWO_PI; i += HALF_PI){
-      if(true || 0 < currRoom.rY + int(cos(i)) && currRoom.rY + int(cos(i)) <  MAX_RHEIGHT && 0 < currRoom.rX + int(sin(i)) && currRoom.rX + int(sin(i)) < MAX_RWIDTH && map[currRoom.rY + int(cos(i))][currRoom.rX + int(sin(i))] != null){
+    for(float i = 0; i < TWO_PI; i+= HALF_PI){
+      if(0 < currRoom.rY + int(sin(i)) && currRoom.rY + int(sin(i)) <  MAX_RHEIGHT && 0 < currRoom.rX + int(cos(i)) && currRoom.rX + int(cos(i)) < MAX_RWIDTH && map[currRoom.rY + int(sin(i))][currRoom.rX + int(cos(i))] != null){
         beginShape();
-        println(int(cos(i + PI)) + " " + int(sin(i)));
-        vertex(p + (r * b / 2 + b / 2) * (1 + cos(i + PI)), p + (r * b / 2 - b / 2) * (1 + sin(i)));
-        vertex(p + (r * b / 2 - b / 2) * (1 + cos(i + PI)), p + (r * b / 2 - b / 2) * (1 + sin(i)));
-        vertex(p + (r * b / 2 - b / 2) * (1 + cos(i + PI)) + DOOR_LENGTH * cos(i + PI), p + (r * b / 2 + b / 2) * (1 + sin(i)) + DOOR_LENGTH * sin(i));
-        vertex(p + (r * b / 2 + b / 2) * (1 + cos(i + PI)) + DOOR_LENGTH * cos(i + PI), p + (r * b / 2 + b / 2) * (1 + sin(i)) + DOOR_LENGTH * sin(i));
+        vertex(pad + dist * (1 + cos(i + PI)) - DOOR_LENGTH * abs(cos(i)) - box * abs(cos(i + HALF_PI)) / 2, pad + dist * (1 + sin(i + PI)) - DOOR_LENGTH * abs(sin(i)) - box * abs(sin(i + HALF_PI)) / 2);
+        vertex(pad + dist * (1 + cos(i + PI)) + DOOR_LENGTH * abs(cos(i)) - box * abs(cos(i + HALF_PI)) / 2, pad + dist * (1 + sin(i + PI)) + DOOR_LENGTH * abs(sin(i)) - box * abs(sin(i + HALF_PI)) / 2);
+        vertex(pad + dist * (1 + cos(i + PI)) + DOOR_LENGTH * abs(cos(i)) + box * abs(cos(i + HALF_PI)) / 2, pad + dist * (1 + sin(i + PI)) + DOOR_LENGTH * abs(sin(i)) + box * abs(sin(i + HALF_PI)) / 2);
+        vertex(pad + dist * (1 + cos(i + PI)) - DOOR_LENGTH * abs(cos(i)) + box * abs(cos(i + HALF_PI)) / 2, pad + dist * (1 + sin(i + PI)) - DOOR_LENGTH * abs(sin(i)) + box * abs(sin(i + HALF_PI)) / 2);
+
         endShape();
       }
       

@@ -4,7 +4,7 @@ class Room{
   //CONSTANT
   final static int ROOM_SIZE = 15;//In terms of availible space one one edge for a single object, i.e. 1 = space for one object
   final static int BOX_SIZE = 50;//Pixel size of one edge of an object
-  final static int PADDING = 25;
+  final static int PADDING = 50;
   int ROOM_RED_HUE = 30;
   int ROOM_GRE_HUE = 100;
   int ROOM_BLU_HUE = 50;
@@ -73,7 +73,22 @@ class Room{
   }
   
   boolean canMove(int x, int y, int radius){
-    if( PADDING > x - radius || x + radius >= PADDING + BOX_SIZE * ROOM_SIZE || PADDING > y - radius || y + radius >= PADDING + BOX_SIZE * ROOM_SIZE){
+    
+    int pad = Room.PADDING;
+    int dist = Room.ROOM_SIZE * Room.BOX_SIZE / 2;
+    int box = Room.BOX_SIZE;
+    noStroke();
+    fill(0);
+    for(float i = 0; i < TWO_PI; i+= HALF_PI){
+      if(0 < rY + int(sin(i)) && rY + int(sin(i)) < Map.MAX_RHEIGHT && 0 < rX + int(cos(i)) && rX + int(cos(i)) < MAX_RWIDTH && Final.currFloor.map[rY + int(sin(i))][rX + int(cos(i))] != null){
+        if(pad + dist * (1 + cos(i + PI)) - box * abs(cos(i + HALF_PI)) / 2 <= x && x <= 1 + cos(i + PI)) - box * abs(cos(i + HALF_PI)) / 2 && pad + dist * (1 + sin(i + PI))- box * abs(sin(i + HALF_PI)) / 2 <= y && y <= pad + dist * (1 + sin(i + PI))- box * abs(sin(i + HALF_PI)) / 2){
+           
+        }
+      }
+    
+    if( PADDING > x - radius || x + radius > PADDING + BOX_SIZE * ROOM_SIZE || PADDING > y - radius || y + radius > PADDING + BOX_SIZE * ROOM_SIZE){
+      if( x 
+      
       return false;
     }
     if(room[(y - PADDING) / BOX_SIZE][(x - PADDING) / BOX_SIZE] != null && room[(y - PADDING) / BOX_SIZE][(x - PADDING) / BOX_SIZE].solid){
