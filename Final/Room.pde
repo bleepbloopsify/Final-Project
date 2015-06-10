@@ -18,11 +18,13 @@ class Room{
   ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
   
   Entity[][] room;//A 2d map of the room
+  String type;
   
   Room(){
   }
   
   Room(int rX, int rY){
+    type = "Room";
     this.rX = rX;
     this.rY = rY;
     
@@ -80,15 +82,18 @@ class Room{
     noStroke();
     fill(0);
     for(float i = 0; i < TWO_PI; i+= HALF_PI){
-      if(0 < rY + int(sin(i)) && rY + int(sin(i)) < Map.MAX_RHEIGHT && 0 < rX + int(cos(i)) && rX + int(cos(i)) < MAX_RWIDTH && Final.currFloor.map[rY + int(sin(i))][rX + int(cos(i))] != null){
-        if(pad + dist * (1 + cos(i + PI)) - box * abs(cos(i + HALF_PI)) / 2 <= x && x <= 1 + cos(i + PI)) - box * abs(cos(i + HALF_PI)) / 2 && pad + dist * (1 + sin(i + PI))- box * abs(sin(i + HALF_PI)) / 2 <= y && y <= pad + dist * (1 + sin(i + PI))- box * abs(sin(i + HALF_PI)) / 2){
-           
+      if(0 <= rY + int(sin(i)) && rY + int(sin(i)) < Map.MAX_RHEIGHT && 0 <= rX + int(cos(i)) && rX + int(cos(i)) < Map.MAX_RWIDTH && Final.currFloor.map[rY + int(sin(i))][rX + int(cos(i))] != null){
+        println(pad + dist * (1 + cos(i)) - box * abs(cos(i - HALF_PI)));
+        println(x);
+        if(pad + dist * (1 + cos(i)) - box * abs(cos(i - HALF_PI)) <= x && x <= pad + dist * (1 + cos(i)) - box * abs(cos(i - HALF_PI))
+        && pad + dist * (1 + sin(i)) - box * abs(sin(i - HALF_PI)) <= y && y <= pad + dist * (1 + sin(i)) - box * abs(sin(i - HALF_PI))){
+          println("Yes");
+          Final.currFloor.currRoom = Final.currFloor.map[rY + int(sin(i))][rX + int(cos(i))];
+          Final.player.setLoc(pad + dist * (1 + int(cos(i))),  pad + dist * (1 + int(sin(i))));
         }
       }
-    
-    if( PADDING > x - radius || x + radius > PADDING + BOX_SIZE * ROOM_SIZE || PADDING > y - radius || y + radius > PADDING + BOX_SIZE * ROOM_SIZE){
-      if( x 
-      
+    }
+    if( PADDING > x || x > PADDING + BOX_SIZE * ROOM_SIZE || PADDING > y || y> PADDING + BOX_SIZE * ROOM_SIZE){
       return false;
     }
     if(room[(y - PADDING) / BOX_SIZE][(x - PADDING) / BOX_SIZE] != null && room[(y - PADDING) / BOX_SIZE][(x - PADDING) / BOX_SIZE].solid){

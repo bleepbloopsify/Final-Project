@@ -1,7 +1,7 @@
 //CONSTANTS
 int BG_COLOR_GREYSCALE = 255;
-static String PROJ_LOC = "C:/Users/Leon/Desktop/Final-Project";
-//static String PROJ_LOC = "/home/students/2016/leon.chou/Final-Project";
+//static String PROJ_LOC = "C:/Users/Leon/Desktop/Final-Project";
+static String PROJ_LOC = "/home/students/2016/leon.chou/Final-Project";
 
 static String IMG_LOC = "";//"/Images/";
 static String IMG_END = ".png";
@@ -15,7 +15,7 @@ boolean[] keyDown = new boolean[256];
 int x, y;//for mouse
 
 PImage bg;
-Player player;
+static Player player;
 
 void setup(){
   size(Room.BOX_SIZE * Room.ROOM_SIZE + Room.PADDING * 2, Room.BOX_SIZE * Room.ROOM_SIZE + Room.PADDING * 2);
