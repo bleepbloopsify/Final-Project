@@ -1,7 +1,7 @@
 //CONSTANTS
 int BG_COLOR_GREYSCALE = 255;
-static String PROJ_LOC = "C:/Users/Leon/Desktop/Final-Project";
-//static String PROJ_LOC = "/home/students/2016/leon.chou/Final-Project";
+//static String PROJ_LOC = "C:/Users/Leon/Desktop/Final-Project";
+static String PROJ_LOC = "/home/students/2016/leon.chou/Final-Project";
 
 static String IMG_LOC = "";//"/Images/";
 static String IMG_END = ".png";
@@ -9,6 +9,8 @@ static String IMG_END = ".png";
 //Instance
 static Map currFloor;
 int floor;
+
+int sightSize = 15;
 
 boolean[] keyDown = new boolean[256];
 
@@ -35,6 +37,7 @@ void draw(){
   rect(Room.PADDING, Room.PADDING, Room.BOX_SIZE * Room.ROOM_SIZE, Room.BOX_SIZE * Room.ROOM_SIZE);
   currFloor.display();
   player.display(keyDown);
+  displayCursor();
 }
 
 void keyPressed(){
@@ -50,8 +53,27 @@ void mouseMoved(){
    this.y = mouseY;
 }
 
+void mouseDragged(){
+  this.x = mouseX;
+  this.y = mouseY;
+}
+
 void mouseClicked(){
   //player.fireAt(x,y); 
 }
 
 
+void displayCursor(){
+  strokeWeight(2);
+  if (mousePressed){
+   stroke(255, 0, 0);
+  }else{
+   stroke(0,0,0);
+  }
+  line(x + 3, y, x + 3 + sightSize, y);
+  line(x - 3, y, x - 3 - sightSize, y);
+  line(x, y + 3, x, y + 3 + sightSize);
+  line(x, y - 3, x, y - 3 - sightSize);
+  stroke(0);
+  
+}

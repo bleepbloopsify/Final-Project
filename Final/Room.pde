@@ -22,7 +22,6 @@ class Room{
   
   Room down, right, left, up;
   
-  
   Room(){
   }
   
@@ -107,10 +106,10 @@ class Room{
      Final.player.setLoc(pad + dist * 2 - box / 2, pad + dist);
      return true;
    }
-   if( PADDING > x || x > PADDING + BOX_SIZE * ROOM_SIZE || PADDING > y || y> PADDING + BOX_SIZE * ROOM_SIZE){
+   if( PADDING > x || (x - PADDING) >  BOX_SIZE * ROOM_SIZE- 0.2  || PADDING > y || y - PADDING > BOX_SIZE * ROOM_SIZE - 0.2){
       return false;
     }
-    if(room[(y - PADDING) / BOX_SIZE][(x - PADDING) / BOX_SIZE] != null && room[(y - PADDING) / BOX_SIZE][(x - PADDING) / BOX_SIZE].solid){
+    if(room[(x - PADDING) / BOX_SIZE][(y - PADDING) / BOX_SIZE] != null && room[(x - PADDING) / BOX_SIZE][(y - PADDING) / BOX_SIZE].solid){
       return false;
     }
     return true;

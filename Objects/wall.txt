@@ -1,0 +1,2 @@
+name=wall
+solid=true
