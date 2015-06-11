@@ -20,6 +20,9 @@ class Room{
   Entity[][] room;//A 2d map of the room
   String type;
   
+  Room down, right, left, up;
+  
+  
   Room(){
   }
   
@@ -74,25 +77,47 @@ class Room{
     }
   }
   
-  boolean canMove(int x, int y, int radius){
-    
+  boolean canMove(int x, int y){
     int pad = Room.PADDING;
     int dist = Room.ROOM_SIZE * Room.BOX_SIZE / 2;
     int box = Room.BOX_SIZE;
-    noStroke();
-    fill(0);
-    for(float i = 0; i < TWO_PI; i+= HALF_PI){
-      if(0 <= rY + int(sin(i)) && rY + int(sin(i)) < Map.MAX_RHEIGHT && 0 <= rX + int(cos(i)) && rX + int(cos(i)) < Map.MAX_RWIDTH && Final.currFloor.map[rY + int(sin(i))][rX + int(cos(i))] != null){
-        println(pad + dist * (1 + cos(i)) - box * abs(cos(i - HALF_PI)));
-        println(x);
-        if(pad + dist * (1 + cos(i)) - box * abs(cos(i - HALF_PI)) <= x && x <= pad + dist * (1 + cos(i)) - box * abs(cos(i - HALF_PI))
-        && pad + dist * (1 + sin(i)) - box * abs(sin(i - HALF_PI)) <= y && y <= pad + dist * (1 + sin(i)) - box * abs(sin(i - HALF_PI))){
-          println("Yes");
-          Final.currFloor.currRoom = Final.currFloor.map[rY + int(sin(i))][rX + int(cos(i))];
-          Final.player.setLoc(pad + dist * (1 + int(cos(i))),  pad + dist * (1 + int(sin(i))));
-        }
-      }
+    
+    //Door Checks
+    //down
+    if(pad + dist - box < x && x < pad + dist + box && pad + dist * 2 <= y && down != null){
+      Final.currFloor.currRoom = down;
+      Final.player.setLoc(pad + dist , pad + box / 2);
+      return true;
     }
+    //right
+    if(pad + dist * 2 <= x && pad + dist - box < y && y <pad + dist + box && right != null){
+     Final.currFloor.currRoom = right;
+     Final.player.setLoc(pad + box / 2, pad + dist);
+     return true;
+    }
+    //up
+    if(pad + dist - box < x && x < pad + dist + box && pad >= y && up != null){
+      Final.currFloor.currRoom = up;
+      Final.player.setLoc(pad + dist, pad + dist * 2 - box / 2);
+      return true;
+    }
+   //left
+   if(pad >= x && pad + dist - box < y && y < pad + dist + box && left != null){
+     Final.currFloor.currRoom = left;
+     Final.player.setLoc(pad + dist * 2 - box / 2, pad + dist);
+     return true;
+   }
+   if( PADDING > x || x > PADDING + BOX_SIZE * ROOM_SIZE || PADDING > y || y> PADDING + BOX_SIZE * ROOM_SIZE){
+      return false;
+    }
+    if(room[(y - PADDING) / BOX_SIZE][(x - PADDING) / BOX_SIZE] != null && room[(y - PADDING) / BOX_SIZE][(x - PADDING) / BOX_SIZE].solid){
+      return false;
+    }
+    return true;
+  }
+  
+  boolean canMove(int x, int y, int radius){    
+    
     if( PADDING > x || x > PADDING + BOX_SIZE * ROOM_SIZE || PADDING > y || y> PADDING + BOX_SIZE * ROOM_SIZE){
       return false;
     }

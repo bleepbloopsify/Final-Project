@@ -1,7 +1,7 @@
 //CONSTANTS
 int BG_COLOR_GREYSCALE = 255;
-//static String PROJ_LOC = "C:/Users/Leon/Desktop/Final-Project";
-static String PROJ_LOC = "/home/students/2016/leon.chou/Final-Project";
+static String PROJ_LOC = "C:/Users/Leon/Desktop/Final-Project";
+//static String PROJ_LOC = "/home/students/2016/leon.chou/Final-Project";
 
 static String IMG_LOC = "";//"/Images/";
 static String IMG_END = ".png";
@@ -20,19 +20,12 @@ static Player player;
 void setup(){
   size(Room.BOX_SIZE * Room.ROOM_SIZE + Room.PADDING * 2, Room.BOX_SIZE * Room.ROOM_SIZE + Room.PADDING * 2);
   background(BG_COLOR_GREYSCALE);
-  Enemy p1 = new Enemy("Blob");
   
   bg = loadImage("Room_Bg.png");
   floor = 1;
   currFloor = new Map(floor);
   
   player = new Player();
-  
-  println(int(cos(-1 * HALF_PI)) + " " + int(sin(-1 * HALF_PI)));
-  println(int(cos(0)) + " " + int(sin(0)));
-  println(int(cos(HALF_PI)) + " " + int( sin(HALF_PI)));
-  println(int(cos(PI)) + " " + int(sin(PI)));
-  
 }
 
 void draw(){

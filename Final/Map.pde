@@ -23,15 +23,15 @@ class Map{
     setStart();
     setRooms();
     print(spawn == null);
-    for(Room[] line : map){
-      for(Room r : line){
-        if(r == null) print("null ");
-        else if(r.rX == spawn.rX && r.rY == spawn.rY) print("spawn");
-        else if(r == boss) print("boss ");
-        else print("room "); 
-      }
-      println();
-    }
+//    for(Room[] line : map){
+//      for(Room r : line){
+//        if(r == null) print("null ");
+//        else if(r.rX == spawn.rX && r.rY == spawn.rY) print("spawn");
+//        else if(r == boss) print("boss ");
+//        else print("room "); 
+//      }
+//      println();
+//    }
   }
 
   void display(){
@@ -43,19 +43,44 @@ class Map{
     int pad = Room.PADDING;
     int dist = Room.ROOM_SIZE * Room.BOX_SIZE / 2;
     int box = Room.BOX_SIZE;
+    int currX = currRoom.rX;
+    int currY = currRoom.rY;
     noStroke();
     fill(0);
-    for(float i = 0; i < TWO_PI; i+= HALF_PI){
-      if(0 <= currRoom.rY + int(sin(i)) && currRoom.rY + int(sin(i)) <  MAX_RHEIGHT && 0 <= currRoom.rX + int(cos(i)) && currRoom.rX + int(cos(i)) < MAX_RWIDTH && map[currRoom.rY + int(sin(i))][currRoom.rX + int(cos(i))] != null){
-        beginShape();
-        vertex(pad + dist * (1 + cos(i)) - DOOR_LENGTH * abs(cos(i + PI)) - box * abs(cos(i - HALF_PI)) / 2, pad + dist * (1 + sin(i)) - DOOR_LENGTH * abs(sin(i + PI)) - box * abs(sin(i - HALF_PI)) / 2);
-        vertex(pad + dist * (1 + cos(i)) + DOOR_LENGTH * abs(cos(i + PI)) - box * abs(cos(i - HALF_PI)) / 2, pad + dist * (1 + sin(i)) + DOOR_LENGTH * abs(sin(i + PI)) - box * abs(sin(i - HALF_PI)) / 2);
-        vertex(pad + dist * (1 + cos(i)) + DOOR_LENGTH * abs(cos(i + PI)) + box * abs(cos(i - HALF_PI)) / 2, pad + dist * (1 + sin(i)) + DOOR_LENGTH * abs(sin(i + PI)) + box * abs(sin(i - HALF_PI)) / 2);
-        vertex(pad + dist * (1 + cos(i)) - DOOR_LENGTH * abs(cos(i + PI)) + box * abs(cos(i - HALF_PI)) / 2, pad + dist * (1 + sin(i)) - DOOR_LENGTH * abs(sin(i + PI)) + box * abs(sin(i - HALF_PI)) / 2);
-
-        endShape();
-      }
-      
+    
+    if(currY + 1 < MAX_RHEIGHT && map[currY + 1][currX] != null){
+      beginShape();
+      vertex(pad + dist - box / 2, pad + dist * 2);
+      vertex(pad + dist + box / 2, pad + dist * 2);
+      vertex(pad + dist + box / 2, pad + dist * 2 + DOOR_LENGTH);
+      vertex(pad + dist - box / 2, pad + dist * 2 + DOOR_LENGTH);
+      endShape();
+      currRoom.down = map[currY + 1][currX];
+    }
+    if(currX + 1 < MAX_RWIDTH && map[currY][currX + 1] != null){
+      beginShape();
+      vertex(pad + dist * 2, pad + dist - box / 2);
+      vertex(pad + dist * 2, pad + dist + box / 2);
+      vertex(pad + dist * 2 + DOOR_LENGTH, pad + dist + box / 2);
+      vertex(pad + dist * 2 + DOOR_LENGTH, pad + dist - box / 2);
+      endShape();
+      currRoom.right = map[currY][currX + 1];
+    }if(currY - 1 >= 0 && map[currY - 1][currX] != null){
+      beginShape();
+      vertex(pad + dist - box / 2, pad);
+      vertex(pad + dist + box / 2, pad);
+      vertex(pad + dist + box / 2, pad - DOOR_LENGTH);
+      vertex(pad + dist - box / 2, pad - DOOR_LENGTH);
+      endShape();
+      currRoom.up = map[currY - 1][currX];
+    }if(currX - 1 >= 0 && map[currY][currX - 1] != null){
+      beginShape();
+      vertex(pad, pad + dist - box / 2);
+      vertex(pad, pad + dist + box / 2);
+      vertex(pad + DOOR_LENGTH, pad + dist + box / 2);
+      vertex(pad + DOOR_LENGTH, pad + dist - box / 2);
+      endShape();
+      currRoom.left = map[currY][currX - 1];
     }
   }
 

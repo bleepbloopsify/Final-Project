@@ -11,12 +11,14 @@ class Enemy extends Entity{
   int cx, cy;//center in px
   int radius;//radius of the guy in px
   
+  PImage img;
   int seq;//Sequence of movement; for animation
   
   Enemy(String name){
     type = "Enemy";
     seq = int(random(3)) + 1;
     load(name);
+    img = loadImage(Final.IMG_LOC + name + "_" + seq + Final.IMG_END);
   }
   
   void load(String name){
@@ -40,10 +42,7 @@ class Enemy extends Entity{
     this.cy = y + Room.BOX_SIZE / 2;
   }
   
-  void display(){
-
-    if(name == null || name.equals("null")) {println("NAME IS NULL");return;}
-    img = loadImage(Final.IMG_LOC + name + "_" + seq + Final.IMG_END);
+  void display(){    
     image(img, cx - Room.BOX_SIZE / 2, cy - Room.BOX_SIZE / 2, Room.BOX_SIZE - 10, Room.BOX_SIZE - 10);
     seq = (seq + 1) % 3 + 1;
   }
