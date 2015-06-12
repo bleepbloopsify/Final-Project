@@ -31,7 +31,7 @@ class Player extends Entity{
    rect(x - PLAY_R / 2 , y - PLAY_R / 2, PLAY_R, PLAY_R);
   }
   
-  void fireAt(int x, int y){
+  void fireAt(float x, float y){
     if(ammo > 0){
       Final.currFloor.currRoom.bullets.add(new Bullet(this.x, this.y, x, y));
     } 

@@ -4,13 +4,47 @@ class Bullet extends Entity{
   int BULLET_SPEED = 20;
   int hp;
   
-  Bullet(int x, int y, int tX, int tY){
-    float angle = atan( ( tY - y) / (tX - x) );
+  Bullet(int x, int y, float tX, float tY){
+    
     this.x = x;
     this.y = y;
     
-    this.i = BULLET_SPEED * sin(angle);
-    this.j = BULLET_SPEED * cos(angle);
+    i = tX - x;
+    j = tY - y;
+    
+    int quad = 0;
+    if( i >= 0 && j >= 0) quad = 1;
+    if( i < 0 && j >= 0) quad = 2;
+    if( i < 0 && j < 0) quad = 3;
+    if( i >= 0 && j < 0) quad = 4;
+    
+    float angle = 0.0;
+    if(i != 0){
+      angle = atan( j / i );
+    }else{ angle = atan(1); }
+    
+    if(quad != 0){
+      if(quad == 1){
+        i = BULLET_SPEED * cos(angle); 
+        j = BULLET_SPEED * sin(angle);
+      }
+      if(quad == 2){
+        i = BULLET_SPEED * (cos(angle) - 1);
+        j = BULLET_SPEED * sin(angle);
+      }
+      if(quad == 3){
+        i = BULLET_SPEED * (cos(angle) - 1);
+        j = BULLET_SPEED * (sin(angle) - 1);
+      }
+      if(quad == 4){
+        i = BULLET_SPEED * cos(angle);
+        j = BULLET_SPEED * (sin(angle) - 1);
+      }
+      
+      
+    }
+    
+    
     
     this.hp = 100;
   }
@@ -19,7 +53,7 @@ class Bullet extends Entity{
     if(hitEnemy(int(x + i), int(y + j))){
       this.hp = 0;
     }
-    strokeWeight(1);
+    strokeWeight(1.5);
     stroke(0);
     line(x, y, x + i, y + j);
     x += i;

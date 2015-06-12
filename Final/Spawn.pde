@@ -12,8 +12,6 @@ class Spawn extends Room{
   void load(){
      
   }
-  
-  void display(){
-  }
+ 
 }
 
