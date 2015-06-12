@@ -21,6 +21,9 @@ class Enemy extends Entity{
     img = loadImage(Final.IMG_LOC + name + "_" + seq + Final.IMG_END);
   }
   
+  void hit(){
+  }
+  
   void load(String name){
     try{
       BufferedReader file = new BufferedReader(new FileReader(Final.PROJ_LOC + FILES + name + FILE_END)); 

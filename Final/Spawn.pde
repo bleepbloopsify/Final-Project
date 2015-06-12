@@ -1,7 +1,7 @@
 
 class Spawn extends Room{
  
-  String ROOM_LOC = Final.PROJ_LOC + "/Special/Spawn_0.txt";
+  String ROOM_LOC = Final.PROJ_LOC + "/Special/Empty.txt";
 
   Spawn(int rX, int rY){
     type = "Spawn";

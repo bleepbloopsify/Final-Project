@@ -16,6 +16,7 @@ class Player extends Entity{
     x = width / 2;
     y = height / 2;
     speed = 5;
+    ammo = 100;
   }
   
   void display(boolean[] keys){
@@ -28,6 +29,12 @@ class Player extends Entity{
    if(keys[int('d')] || keys[int('D')] && loaded.canMove(x + speed, y)) x += speed;
    fill(255,0,0);
    rect(x - PLAY_R / 2 , y - PLAY_R / 2, PLAY_R, PLAY_R);
+  }
+  
+  void fireAt(int x, int y){
+    if(ammo > 0){
+      Final.currFloor.currRoom.bullets.add(new Bullet(this.x, this.y, x, y));
+    } 
   }
   
 }

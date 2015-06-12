@@ -24,16 +24,20 @@ class Map{
     setRooms();
     map[spawn.rY][spawn.rX] = new Spawn(spawn.rX, spawn.rY);
     spawn = map[spawn.rY][spawn.rX];
-    print(spawn == null);
-    for(Room[] line : map){
-      for(Room r : line){
-        if(r == null) print("null ");
-        else if(r.rX == spawn.rX && r.rY == spawn.rY) print("spawn");
-        else if(r == boss) print("boss ");
-        else print("room "); 
-      }
-      println();
-    }
+    
+    map[boss.rY][boss.rX] = new Boss(boss.rX, boss.rY);
+    boss = map[boss.rY][boss.rX];
+//    
+//    print(spawn == null);
+//    for(Room[] line : map){
+//      for(Room r : line){
+//        if(r == null) print("null ");
+//        else if(r.rX == spawn.rX && r.rY == spawn.rY) print("spawn");
+//        else if(r == boss) print("boss ");
+//        else print("room "); 
+//      }
+//      println();
+//    }
   }
 
   void display(){

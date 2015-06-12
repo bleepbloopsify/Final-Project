@@ -16,6 +16,7 @@ class Room{
   int rX, rY;//Location of room on the Map
   boolean cleared = false;
   ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
+  ArrayList<Bullet> bullets = new ArrayList<Bullet>();
   
   Entity[][] room;//A 2d map of the room
   String type;
@@ -74,6 +75,10 @@ class Room{
     for(Enemy e : enemyList){
      e.display();
     }
+    for(int i = 0; i < bullets.size(); i++){
+      bullets.get(i).display();
+      
+    }
   }
   
   boolean canMove(int x, int y){
@@ -109,9 +114,11 @@ class Room{
    if( PADDING > x || (x - PADDING) >  BOX_SIZE * ROOM_SIZE- 0.2  || PADDING > y || y - PADDING > BOX_SIZE * ROOM_SIZE - 0.2){
       return false;
     }
-    if(room[(x - PADDING) / BOX_SIZE][(y - PADDING) / BOX_SIZE] != null && room[(x - PADDING) / BOX_SIZE][(y - PADDING) / BOX_SIZE].solid){
-      return false;
-    }
+    try{
+      if(room[(x - PADDING) / BOX_SIZE][(y - PADDING) / BOX_SIZE] != null && room[(x - PADDING) / BOX_SIZE][(y - PADDING) / BOX_SIZE].solid){
+        return false;
+      }
+    }catch(Exception e){}
     return true;
   }
   
@@ -125,6 +132,10 @@ class Room{
     }
     return true;
   }
+  
+  //For Bullets
+  
+  
   //Distance between two rooms, calculated as a sum of horizontal and vertical distance
   int roomDistance(Room other){
     return abs(this.rX - other.rX) + abs(this.rY - other.rY);
