@@ -1,7 +1,7 @@
 //CONSTANTS
 int BG_COLOR_GREYSCALE = 255;
-//static String PROJ_LOC = "C:/Users/Leon/Desktop/Final-Project";
-static String PROJ_LOC = "/home/students/2016/leon.chou/Final-Project";
+static String PROJ_LOC = "C:/Users/Leon/Desktop/Final-Project";
+//static String PROJ_LOC = "/home/students/2016/leon.chou/Final-Project";
 
 static String IMG_LOC = "";//"/Images/";
 static String IMG_END = ".png";
@@ -59,7 +59,7 @@ void mouseDragged(){
 }
 
 void mouseClicked(){
-  player.fireAt(x,y); 
+  player.fireAt(400,25); 
 }
 
 

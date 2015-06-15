@@ -10,6 +10,7 @@ class Enemy extends Entity{
   int hp;//health = base hp * floor * modifier
   int cx, cy;//center in px
   int radius;//radius of the guy in px
+  int speed;
   
   PImage img;
   int seq;//Sequence of movement; for animation
@@ -19,6 +20,7 @@ class Enemy extends Entity{
     seq = int(random(3)) + 1;
     load(name);
     img = loadImage(Final.IMG_LOC + name + "_" + seq + Final.IMG_END);
+    speed = 5;
   }
   
   void hit(){
@@ -45,8 +47,35 @@ class Enemy extends Entity{
     this.cy = y + Room.BOX_SIZE / 2;
   }
   
-  void display(){    
+  void display(){
+    int pX = Final.player.x;
+    int pY = Final.player.y;
+    
+    Room loaded = Final.currFloor.currRoom;
+    int check = -1;
+    boolean direct = false;
+    if(seq % 10 == 0){
+      check = int(pow(-1,int(random(2))));
+      direct = boolean(int(random(2)));
+      seq = 0;
+    }
+    seq++;
+    
+    
+    
+    int XD = abs(pX - cx);
+    int YD = abs(pY - cy);
+    
+    
+    if(direct){
+       if(loaded.canMove(cx + check * speed, cy, radius)){cx += check * speed;}
+       else if(loaded.canMove(cx - check * speed, cy, radius)){ cx -= check * speed;}
+    }else{
+      if(loaded.canMove(cx, cy + check * speed, radius)){ cy += check * speed;}
+      else if( loaded.canMove(cx, cy - check * speed, radius)){ cy -= check * speed;}
+      
+    }
+    
     image(img, cx - Room.BOX_SIZE / 2, cy - Room.BOX_SIZE / 2, Room.BOX_SIZE - 10, Room.BOX_SIZE - 10);
-    seq = (seq + 1) % 3 + 1;
   }
 }

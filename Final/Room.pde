@@ -123,13 +123,14 @@ class Room{
   }
   
   boolean canMove(int x, int y, int radius){    
-    
-    if( PADDING > x || x > PADDING + BOX_SIZE * ROOM_SIZE || PADDING > y || y> PADDING + BOX_SIZE * ROOM_SIZE){
-      return false;
-    }
-    if(room[(y - PADDING) / BOX_SIZE][(x - PADDING) / BOX_SIZE] != null && room[(y - PADDING) / BOX_SIZE][(x - PADDING) / BOX_SIZE].solid){
-      return false;
-    }
+    try{
+      if( PADDING > x || x > PADDING + BOX_SIZE * ROOM_SIZE || PADDING > y || y > PADDING + BOX_SIZE * ROOM_SIZE){
+        return false;
+      }
+      if(room[(y - PADDING) / BOX_SIZE][(x - PADDING) / BOX_SIZE] != null && room[(y - PADDING) / BOX_SIZE][(x - PADDING) / BOX_SIZE].solid){
+        return false;
+      }
+    }catch (Exception e){return false;}
     return true;
   }
   
